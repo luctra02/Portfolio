@@ -4,6 +4,9 @@ import { useEffect } from "react";
 import { gsap } from "gsap";
 import { CgProfile } from "react-icons/cg";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
+import { programmingLanguages } from "./data/portfolioData";
 
 export default function Home() {
     useEffect(() => {
@@ -25,8 +28,9 @@ export default function Home() {
     }, []);
 
     return (
-        <main className="flex items-center justify-center min-h-screen bg-gradient-to-b from-stone-700 to-black text-white px-6">
-            <section className="flex flex-col md:flex-row items-center justify-between max-w-6xl w-full space-y-10 md:space-y-0">
+        <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-gray-700 to-gray-900 text-white px-6">
+            {/* Intro Section */}
+            <section className="flex flex-col md:flex-row items-center justify-between max-w-6xl w-full space-y-12 md:space-y-0">
                 {/* Text Section */}
                 <div className="flex flex-col text-left space-y-6 md:w-1/2">
                     <h1 className="text-5xl font-bold fade-text">
@@ -36,10 +40,9 @@ export default function Home() {
                     <p className="text-lg text-gray-300 fade-text">
                         Jeg er en nyutdannet IT-student med en lidenskap for
                         utvikling av moderne og brukervennlige webapplikasjoner.
-                        Jeg har ferdigheter og interesserer meg for
-                        fullstack-utvikling, og trives med å kombinere
-                        frontend-design og backend-funksjonalitet for å skape
-                        komplette løsninger.
+                        Jeg interesserer meg for fullstack-utvikling, og trives
+                        med å kombinere frontend-design og
+                        backend-funksjonalitet for å skape komplette løsninger.
                     </p>
                     <div className="flex space-x-4">
                         <Button className="bg-emerald-500 hover:bg-emerald-600 transition w-max fade-button">
@@ -54,6 +57,35 @@ export default function Home() {
                 {/* Image Section */}
                 <div className="flex items-center justify-center md:w-1/2 fade-image">
                     <CgProfile size={275} className="text-emerald-300" />
+                </div>
+            </section>
+
+            <section className="bg-gray-700 text-gray-200 w-screen py-14 mt-40">
+                <div className="max-w-6xl mx-auto px-6">
+                    {/* Header */}
+                    <h2 className="text-3xl font-bold text-center mb-10">
+                        Programmeringsspråk jeg er kjent med
+                    </h2>
+
+                    {/* Programming Languages Grid */}
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10 place-items-center">
+                        {programmingLanguages.map((language) => (
+                            <Link
+                                href={language.url}
+                                target="_blank"
+                                key={language.name}
+                                className="hover:scale-110 transition-transform flex flex-col items-center space-y-2"
+                            >
+                                <Image
+                                    src={language.icon}
+                                    alt={language.name}
+                                    width={64}
+                                    height={64}
+                                />
+                                <span className="text-sm">{language.name}</span>
+                            </Link>
+                        ))}
+                    </div>
                 </div>
             </section>
         </main>
