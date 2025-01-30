@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { programmingLanguages, projects } from "./data/portfolioData";
-import { DisplayProjects } from "@/app/components/displayProjects";
 import TypewriterEffect from "./components/TypewriterEffect";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -26,7 +25,6 @@ export default function Home() {
                 scrollTrigger: {
                     trigger: "#om-meg",
                     start: "top center", // Start when the top of #om-meg reaches the center of the viewport
-                    markers: true, // Enable markers for debugging
                 },
             });
 
@@ -37,7 +35,6 @@ export default function Home() {
                 scrollTrigger: {
                     trigger: "#om-meg",
                     start: "top center", // Start when the top of #om-meg reaches the center of the viewport
-                    markers: true, // Enable markers for debugging
                 },
             });
 
@@ -48,7 +45,6 @@ export default function Home() {
                 scrollTrigger: {
                     trigger: "#om-meg",
                     start: "top center", // Start when the top of #om-meg reaches the center of the viewport
-                    markers: true, // Enable markers for debugging
                 },
             });
 
@@ -59,7 +55,16 @@ export default function Home() {
                 scrollTrigger: {
                     trigger: "#skills",
                     start: "top center",
-                    markers: true, // Enable markers for debugging
+                },
+            });
+
+            gsap.from(".fade-projects", {
+                opacity: 0,
+                duration: 1,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: "#projects",
+                    start: "top center",
                 },
             });
 
@@ -83,7 +88,7 @@ export default function Home() {
     }, []);
 
     return (
-        <main className="flex flex-col items-center min-h-screen bg-gradient-to-b from-gray-700 to-gray-900 text-white px-6">
+        <main className="flex flex-col items-center min-h-screen text-white px-6">
             {/* Full-screen Title Section */}
             <section className="flex flex-col items-center justify-center min-h-screen text-center space-y-4">
                 <h1 className="text-5xl font-bold text-white">
@@ -137,10 +142,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section
-                className="bg-gray-700 text-gray-200 w-screen py-14 mt-40"
-                id="skills"
-            >
+            <section className="text-gray-200 w-screen py-14 mt-40" id="skills">
                 <div className="max-w-6xl mx-auto px-6">
                     {/* Header */}
                     <h2 className="text-3xl font-bold text-center mb-10">
@@ -168,12 +170,49 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <section className="bg-gray-800 text-gray-200 w-screen py-14">
-                <div className="max-w-6xl mx-auto">
-                    <h2 className="text-3xl font-bold text-center mb-10">
+            <section
+                className="bg-gray-800 text-gray-200 w-full py-14"
+                id="projects"
+            >
+                <div className="max-w-6xl mx-auto px-4">
+                    <h2 className="text-3xl font-bold text-center mb-20">
                         Mine nylige prosjekter
                     </h2>
-                    <DisplayProjects projects={projects} />
+                    {projects.map((project, index) => (
+                        <div
+                            key={index}
+                            className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 md:space-x-8 mb-20 fade-projects"
+                        >
+                            {/* Text and Buttons Section */}
+                            <div className="flex flex-col space-y-6 md:w-1/2">
+                                <h3 className="text-4xl font-bold">
+                                    {project.title}
+                                </h3>
+                                <p className="text-lg text-gray-300">
+                                    {project.description}
+                                </p>
+                                <div className="flex space-x-4">
+                                    <Button className="bg-emerald-500 hover:bg-emerald-600 transition w-max">
+                                        View Project
+                                    </Button>
+                                    <Button className="bg-emerald-500 hover:bg-emerald-600 transition w-max">
+                                        View Code
+                                    </Button>
+                                </div>
+                            </div>
+
+                            {/* Image Section */}
+                            <div className="md:w-1/2">
+                                <Image
+                                    src={project.image}
+                                    alt={project.title}
+                                    width={500}
+                                    height={300}
+                                    className="rounded-lg shadow-lg"
+                                />
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </section>
         </main>
