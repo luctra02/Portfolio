@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { programmingLanguages, projects } from "./data/portfolioData";
 import { DisplayProjects } from "@/app/components/displayProjects";
+import TypewriterEffect from "./components/TypewriterEffect";
 
 export default function Home() {
     useEffect(() => {
@@ -29,15 +30,23 @@ export default function Home() {
     }, []);
 
     return (
-        <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-gray-700 to-gray-900 text-white px-6">
+        <main className="flex flex-col items-center min-h-screen bg-gradient-to-b from-gray-700 to-gray-900 text-white px-6">
+            {/* Full-screen Title Section */}
+            <section className="flex flex-col items-center justify-center min-h-screen text-center space-y-4">
+                <h1 className="text-5xl font-bold text-white">
+                    Hei, jeg heter{" "}
+                    <span className="text-emerald-300">Lucas</span>!
+                </h1>
+                <div>
+                    <TypewriterEffect />
+                </div>
+            </section>
+
             {/* Intro Section */}
             <section className="flex flex-col md:flex-row items-center justify-between max-w-6xl w-full space-y-12 md:space-y-0">
                 {/* Text Section */}
                 <div className="flex flex-col text-left space-y-6 md:w-1/2">
-                    <h1 className="text-5xl font-bold fade-text">
-                        Hei, jeg er{" "}
-                        <span className="text-emerald-300">Lucas Tran</span>
-                    </h1>
+                    <h1 className="text-5xl font-bold fade-text">Om meg</h1>
                     <p className="text-lg text-gray-300 fade-text">
                         Jeg er en nyutdannet IT-student med en lidenskap for
                         utvikling av moderne og brukervennlige webapplikasjoner.
