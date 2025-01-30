@@ -6,7 +6,8 @@ import { CgProfile } from "react-icons/cg";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { programmingLanguages } from "./data/portfolioData";
+import { programmingLanguages, projects } from "./data/portfolioData";
+import { DisplayProjects } from "@/app/components/displayProjects";
 
 export default function Home() {
     useEffect(() => {
@@ -86,6 +87,14 @@ export default function Home() {
                             </Link>
                         ))}
                     </div>
+                </div>
+            </section>
+            <section className="bg-gray-800 text-gray-200 w-screen py-14">
+                <div className="max-w-6xl mx-auto">
+                    <h2 className="text-3xl font-bold text-center mb-10">
+                        Mine nylige prosjekter
+                    </h2>
+                    <DisplayProjects projects={projects} />
                 </div>
             </section>
         </main>
