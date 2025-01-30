@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { CgProfile } from "react-icons/cg";
 import { Button } from "@/components/ui/button";
@@ -9,24 +9,77 @@ import Link from "next/link";
 import { programmingLanguages, projects } from "./data/portfolioData";
 import { DisplayProjects } from "@/app/components/displayProjects";
 import TypewriterEffect from "./components/TypewriterEffect";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-    useEffect(() => {
-        gsap.fromTo(
-            ".fade-text", // Target text elements
-            { opacity: 0, y: 30 }, // Initial state (invisible, moved down)
-            { opacity: 1, y: 0, duration: 1, ease: "power2.out", stagger: 0.2 }
-        );
-        gsap.fromTo(
-            ".fade-button",
-            { opacity: 0, y: 40 }, // Start invisible and moved up a little
-            { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
-        );
-        gsap.fromTo(
-            ".fade-image", // Target image (profile) element
-            { opacity: 0, scale: 0.8 },
-            { opacity: 1, scale: 1, duration: 1, ease: "power2.out" }
-        );
+    useLayoutEffect(() => {
+        // Delay the setup slightly to ensure the DOM is fully rendered
+        const timeoutId = setTimeout(() => {
+            // Set up animations
+            gsap.from(".fade-text", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                stagger: 0.3,
+                scrollTrigger: {
+                    trigger: "#om-meg",
+                    start: "top center", // Start when the top of #om-meg reaches the center of the viewport
+                    markers: true, // Enable markers for debugging
+                },
+            });
+
+            gsap.from(".fade-image", {
+                opacity: 0,
+                x: -50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: "#om-meg",
+                    start: "top center", // Start when the top of #om-meg reaches the center of the viewport
+                    markers: true, // Enable markers for debugging
+                },
+            });
+
+            gsap.from(".fade-button", {
+                opacity: 0,
+                x: -50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: "#om-meg",
+                    start: "top center", // Start when the top of #om-meg reaches the center of the viewport
+                    markers: true, // Enable markers for debugging
+                },
+            });
+
+            gsap.from(".fade-languages", {
+                opacity: 0,
+                duration: 1,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: "#skills",
+                    start: "top center",
+                    markers: true, // Enable markers for debugging
+                },
+            });
+
+            // Refresh ScrollTrigger to ensure accurate calculations
+            ScrollTrigger.refresh();
+        }, 100); // Adjust the delay if needed
+
+        // Recalculate positions on window resize
+        const handleResize = () => {
+            ScrollTrigger.refresh();
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        // Cleanup
+        return () => {
+            clearTimeout(timeoutId); // Clear the timeout if the component unmounts
+            window.removeEventListener("resize", handleResize);
+            ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+        };
     }, []);
 
     return (
@@ -40,10 +93,24 @@ export default function Home() {
                 <div>
                     <TypewriterEffect />
                 </div>
+                <Button
+                    onClick={() => {
+                        const element = document.getElementById("om-meg");
+                        if (element) {
+                            element.scrollIntoView({ behavior: "smooth" });
+                        }
+                    }}
+                    className="bg-emerald-500 hover:bg-emerald-600 text-white transition w-max shadow-md"
+                >
+                    Bli kjent med meg!
+                </Button>
             </section>
 
             {/* Intro Section */}
-            <section className="flex flex-col md:flex-row items-center justify-between max-w-6xl w-full space-y-12 md:space-y-0">
+            <section
+                className="flex flex-col md:flex-row justify-between max-w-6xl w-full space-y-12 md:space-y-0 min-h-[40vh]"
+                id="om-meg"
+            >
                 {/* Text Section */}
                 <div className="flex flex-col text-left space-y-6 md:w-1/2">
                     <h1 className="text-5xl font-bold fade-text">Om meg</h1>
@@ -65,12 +132,15 @@ export default function Home() {
                 </div>
 
                 {/* Image Section */}
-                <div className="flex items-center justify-center md:w-1/2 fade-image">
+                <div className="flex justify-center md:w-1/2 fade-image">
                     <CgProfile size={275} className="text-emerald-300" />
                 </div>
             </section>
 
-            <section className="bg-gray-700 text-gray-200 w-screen py-14 mt-40">
+            <section
+                className="bg-gray-700 text-gray-200 w-screen py-14 mt-40"
+                id="skills"
+            >
                 <div className="max-w-6xl mx-auto px-6">
                     {/* Header */}
                     <h2 className="text-3xl font-bold text-center mb-10">
@@ -84,7 +154,7 @@ export default function Home() {
                                 href={language.url}
                                 target="_blank"
                                 key={language.name}
-                                className="hover:scale-110 transition-transform flex flex-col items-center space-y-2"
+                                className="hover:scale-110 transition-transform flex flex-col items-center space-y-2 fade-languages"
                             >
                                 <Image
                                     src={language.icon}
