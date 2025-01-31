@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { CgProfile } from "react-icons/cg";
 import { Button } from "@/components/ui/button";
@@ -9,11 +9,42 @@ import Link from "next/link";
 import { programmingLanguages, projects } from "./data/portfolioData";
 import TypewriterEffect from "./components/TypewriterEffect";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { MdEmail } from "react-icons/md";
+import { FaGithub } from "react-icons/fa";
+import { CgWebsite } from "react-icons/cg";
+import { FaListAlt } from "react-icons/fa";
+import { FaHandPointDown } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+    const buttonRef = useRef<HTMLButtonElement>(null);
+
     useLayoutEffect(() => {
+        if (buttonRef.current) {
+            const button = buttonRef.current;
+            const fingerIcon = button.querySelector(".finger-icon");
+
+            if (fingerIcon) {
+                const hoverAnimation = gsap.to(fingerIcon, {
+                    y: -5, // Small upward movement
+                    repeat: -1, // Infinite shake
+                    yoyo: true, // Reverse the animation
+                    duration: 0.3, // Speed of each shake
+                    paused: true, // Initially paused
+                });
+
+                button.addEventListener("mouseenter", () => {
+                    hoverAnimation.play(); // Play the animation on hover
+                });
+
+                button.addEventListener("mouseleave", () => {
+                    hoverAnimation.pause(); // Pause the animation on mouse leave
+                    gsap.set(fingerIcon, { y: 0 }); // Reset the icon's position
+                });
+            }
+        }
+
         // Delay the setup slightly to ensure the DOM is fully rendered
         const timeoutId = setTimeout(() => {
             // Set up animations
@@ -99,15 +130,17 @@ export default function Home() {
                     <TypewriterEffect />
                 </div>
                 <Button
+                    ref={buttonRef}
                     onClick={() => {
                         const element = document.getElementById("om-meg");
                         if (element) {
                             element.scrollIntoView({ behavior: "smooth" });
                         }
                     }}
-                    className="bg-emerald-500 hover:bg-emerald-600 text-white transition w-max shadow-md"
+                    className="bg-emerald-500 hover:bg-emerald-600 text-white transition w-max shadow-md p-6"
                 >
                     Bli kjent med meg!
+                    <FaHandPointDown className="finger-icon" />
                 </Button>
             </section>
 
@@ -128,11 +161,15 @@ export default function Home() {
                     </p>
                     <div className="flex space-x-4">
                         <Button className="bg-emerald-500 hover:bg-emerald-600 transition w-max fade-button">
+                            <FaListAlt />
                             Se mine prosjekter
                         </Button>
-                        <Button className="bg-emerald-500 hover:bg-emerald-600 transition w-max fade-button">
-                            Kontakt meg
-                        </Button>
+                        <Link href="mailto:lucastran1107@gmail.com">
+                            <Button className="bg-emerald-500 hover:bg-emerald-600 transition w-max fade-button">
+                                <MdEmail />
+                                Kontakt meg
+                            </Button>
+                        </Link>
                     </div>
                 </div>
 
@@ -142,7 +179,10 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="text-gray-200 w-screen py-14 mt-40" id="skills">
+            <section
+                className="bg-gray-700 text-gray-200 w-screen py-14 mt-40"
+                id="skills"
+            >
                 <div className="max-w-6xl mx-auto px-6">
                     {/* Header */}
                     <h2 className="text-3xl font-bold text-center mb-10">
@@ -192,12 +232,24 @@ export default function Home() {
                                     {project.description}
                                 </p>
                                 <div className="flex space-x-4">
-                                    <Button className="bg-emerald-500 hover:bg-emerald-600 transition w-max">
-                                        View Project
-                                    </Button>
-                                    <Button className="bg-emerald-500 hover:bg-emerald-600 transition w-max">
-                                        View Code
-                                    </Button>
+                                    <Link
+                                        target="_blank"
+                                        href={project.demoUrl}
+                                    >
+                                        <Button className="bg-emerald-500 hover:bg-emerald-600 transition w-max">
+                                            <CgWebsite />
+                                            Besøk nettsiden
+                                        </Button>
+                                    </Link>
+                                    <Link
+                                        target="_blank"
+                                        href={project.codeUrl}
+                                    >
+                                        <Button className="bg-emerald-500 hover:bg-emerald-600 transition w-max">
+                                            <FaGithub />
+                                            Vis prosjektet
+                                        </Button>
+                                    </Link>
                                 </div>
                             </div>
 
