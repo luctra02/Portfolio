@@ -14,6 +14,7 @@ import { FaGithub } from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
 import { FaListAlt } from "react-icons/fa";
 import { FaHandPointDown } from "react-icons/fa";
+import { ContactForm } from "./components/ContactForm";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -265,6 +266,18 @@ export default function Home() {
                             </div>
                         </div>
                     ))}
+                </div>
+            </section>
+            {/* Contact Section */}
+            <section
+                className="bg-gray-800 text-gray-200 w-full py-14"
+                id="contact"
+            >
+                <div className="max-w-6xl mx-auto px-4">
+                    <h2 className="text-3xl font-bold text-center mb-10">
+                        Kontakt meg
+                    </h2>
+                    <ContactForm />
                 </div>
             </section>
         </main>
