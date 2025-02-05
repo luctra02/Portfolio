@@ -6,7 +6,7 @@ import { CgProfile } from "react-icons/cg";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { programmingLanguages, projects } from "./data/portfolioData";
+import { programmingLanguages, recentProjects } from "./data/portfolioData";
 import TypewriterEffect from "./components/TypewriterEffect";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MdEmail } from "react-icons/md";
@@ -15,11 +15,33 @@ import { CgWebsite } from "react-icons/cg";
 import { FaListAlt } from "react-icons/fa";
 import { FaHandPointDown } from "react-icons/fa";
 import { ContactForm } from "./components/ContactForm";
+import { useRouter, useSearchParams } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
     const buttonRef = useRef<HTMLButtonElement>(null);
+
+    const searchParams = useSearchParams();
+    const router = useRouter();
+
+    useLayoutEffect(() => {
+        const scrollTo = searchParams.get("scrollTo");
+
+        if (scrollTo) {
+            setTimeout(() => {
+                const element = document.getElementById(scrollTo);
+                if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+
+                    // Remove query param after scrolling
+                    const newUrl = new URL(window.location.href);
+                    newUrl.searchParams.delete("scrollTo");
+                    router.replace(newUrl.pathname, { scroll: false });
+                }
+            }, 250);
+        }
+    }, [router, searchParams]);
 
     useLayoutEffect(() => {
         if (buttonRef.current) {
@@ -55,8 +77,8 @@ export default function Home() {
                 duration: 1,
                 stagger: 0.3,
                 scrollTrigger: {
-                    trigger: "#om-meg",
-                    start: "top center", // Start when the top of #om-meg reaches the center of the viewport
+                    trigger: "#about-me",
+                    start: "top center",
                 },
             });
 
@@ -65,8 +87,8 @@ export default function Home() {
                 x: -50,
                 duration: 1,
                 scrollTrigger: {
-                    trigger: "#om-meg",
-                    start: "top center", // Start when the top of #om-meg reaches the center of the viewport
+                    trigger: "#about-me",
+                    start: "top center",
                 },
             });
 
@@ -75,8 +97,8 @@ export default function Home() {
                 x: -50,
                 duration: 1,
                 scrollTrigger: {
-                    trigger: "#om-meg",
-                    start: "top center", // Start when the top of #om-meg reaches the center of the viewport
+                    trigger: "#about-me",
+                    start: "top center",
                 },
             });
 
@@ -133,7 +155,7 @@ export default function Home() {
                 <Button
                     ref={buttonRef}
                     onClick={() => {
-                        const element = document.getElementById("om-meg");
+                        const element = document.getElementById("about-me");
                         if (element) {
                             element.scrollIntoView({ behavior: "smooth" });
                         }
@@ -148,11 +170,13 @@ export default function Home() {
             {/* Intro Section */}
             <section
                 className="flex flex-col md:flex-row justify-between max-w-6xl w-full space-y-12 md:space-y-0 min-h-[40vh]"
-                id="om-meg"
+                id="about-me"
             >
                 {/* Text Section */}
                 <div className="flex flex-col text-left space-y-6 md:w-1/2">
-                    <h1 className="text-5xl font-bold fade-text">Om meg</h1>
+                    <h2 className="text-3xl font-bold text-emerald-300">
+                        Om meg
+                    </h2>
                     <p className="text-lg text-gray-300 fade-text">
                         Jeg er en nyutdannet IT-student med en lidenskap for
                         utvikling av moderne og brukervennlige webapplikasjoner.
@@ -161,10 +185,12 @@ export default function Home() {
                         backend-funksjonalitet for å skape komplette løsninger.
                     </p>
                     <div className="flex space-x-4">
-                        <Button className="bg-emerald-500 hover:bg-emerald-600 transition w-max fade-button">
-                            <FaListAlt />
-                            Se mine prosjekter
-                        </Button>
+                        <Link href="/projects">
+                            <Button className="bg-emerald-500 hover:bg-emerald-600 transition w-max fade-button">
+                                <FaListAlt />
+                                Se mine prosjekter
+                            </Button>
+                        </Link>
                         <Link href="mailto:lucastran1107@gmail.com">
                             <Button className="bg-emerald-500 hover:bg-emerald-600 transition w-max fade-button">
                                 <MdEmail />
@@ -186,7 +212,7 @@ export default function Home() {
             >
                 <div className="max-w-6xl mx-auto px-6">
                     {/* Header */}
-                    <h2 className="text-3xl font-bold text-center mb-10">
+                    <h2 className="text-3xl font-bold text-center mb-10 text-emerald-300">
                         Programmeringsspråk jeg er kjent med
                     </h2>
 
@@ -216,10 +242,10 @@ export default function Home() {
                 id="projects"
             >
                 <div className="max-w-6xl mx-auto px-4">
-                    <h2 className="text-3xl font-bold text-center mb-20">
+                    <h2 className="text-3xl font-bold text-center mb-20 text-emerald-300">
                         Mine nylige prosjekter
                     </h2>
-                    {projects.map((project, index) => (
+                    {recentProjects.map((project, index) => (
                         <div
                             key={index}
                             className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 md:space-x-8 mb-20 fade-projects"
@@ -274,7 +300,7 @@ export default function Home() {
                 id="contact"
             >
                 <div className="max-w-6xl mx-auto px-4">
-                    <h2 className="text-3xl font-bold text-center mb-10">
+                    <h2 className="text-3xl font-bold text-center mb-10 text-emerald-300">
                         Kontakt meg
                     </h2>
                     <ContactForm />
