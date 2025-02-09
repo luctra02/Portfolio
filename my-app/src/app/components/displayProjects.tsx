@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import gsap from "gsap";
 import {
     Card,
     CardHeader,
@@ -30,6 +31,19 @@ interface DisplayProjectsProps {
 export function DisplayProjects({ projects }: DisplayProjectsProps) {
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            gsap.from(".fade-in", {
+                opacity: 0,
+                x: 50,
+                duration: 1.5,
+                stagger: 0.3,
+            });
+        }, 100); // Small delay to ensure elements are rendered
+
+        return () => clearTimeout(timeout); // Cleanup timeout on unmount
+    }, []);
+
     const nextImage = (e: React.MouseEvent) => {
         e.stopPropagation();
         if (selectedIndex !== null) {
@@ -53,7 +67,7 @@ export function DisplayProjects({ projects }: DisplayProjectsProps) {
                 {projects.map((project, index) => (
                     <Card
                         key={index}
-                        className="bg-gray-800 border-gray-700 flex flex-col h-full 
+                        className="fade-in bg-gray-800 border-gray-700 flex flex-col h-full 
                                    hover:shadow-lg hover:shadow-emerald-500/20 transition-shadow duration-300"
                     >
                         {/* Card Header */}

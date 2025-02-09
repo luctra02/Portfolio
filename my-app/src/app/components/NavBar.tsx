@@ -50,13 +50,14 @@ export function Navbar() {
                         >
                             Om meg
                         </Button>
-                        <Button
-                            variant="ghost"
-                            onClick={() => scrollToSection("skills")}
-                            className="text-gray-300 hover:text-emerald-400 hover:bg-gray-700/50 transition"
-                        >
-                            Ferdigheter
-                        </Button>
+                        <Link href="/skills">
+                            <Button
+                                variant="ghost"
+                                className="text-gray-300 hover:text-emerald-400 hover:bg-gray-700/50 transition"
+                            >
+                                Ferdigheter
+                            </Button>
+                        </Link>
                         <Link href="/projects">
                             <Button
                                 variant="ghost"
