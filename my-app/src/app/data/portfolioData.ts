@@ -55,7 +55,7 @@ export const allProjects = [
     },
     {
         title: "PokeTeamBuilder",
-        description: "PokeTeamBuilder er en nettside der brukeren kan få opp informasjon om alle pokemons fra første generasjon og lage et lag av maks 6 pokemons. Brukeren kan også klikke på en pokemon for mer detaljert informasjon.",
+        description: "PokeTeamBuilder er en nettside der brukeren kan få opp informasjon om alle pokemons fra første generasjon og lage et lag av maks 6 pokemons.",
         image: "/images/poketeambuilder.png",
         codeUrl: "https://github.com/luctra02/PokeTeamBuilder",
     },

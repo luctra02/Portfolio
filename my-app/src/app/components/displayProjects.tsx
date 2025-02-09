@@ -31,14 +31,14 @@ export function DisplayProjects({ projects }: DisplayProjectsProps) {
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
     const nextImage = (e: React.MouseEvent) => {
-        e.stopPropagation(); // Prevent modal from closing
+        e.stopPropagation();
         if (selectedIndex !== null) {
             setSelectedIndex((prev) => (prev! + 1) % projects.length);
         }
     };
 
     const prevImage = (e: React.MouseEvent) => {
-        e.stopPropagation(); // Prevent modal from closing
+        e.stopPropagation();
         if (selectedIndex !== null) {
             setSelectedIndex((prev) =>
                 prev! === 0 ? projects.length - 1 : prev! - 1
@@ -48,15 +48,17 @@ export function DisplayProjects({ projects }: DisplayProjectsProps) {
 
     return (
         <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Project Cards Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
                 {projects.map((project, index) => (
                     <Card
                         key={index}
-                        className="bg-gray-700 border-gray-600 flex flex-col h-full"
+                        className="bg-gray-800 border-gray-700 flex flex-col h-full 
+                                   hover:shadow-lg hover:shadow-emerald-500/20 transition-shadow duration-300"
                     >
                         {/* Card Header */}
                         <CardHeader className="flex-none">
-                            <CardTitle className="text-emerald-300 text-2xl font-bold">
+                            <CardTitle className="text-emerald-400 text-2xl font-bold">
                                 {project.title}
                             </CardTitle>
                             <CardDescription className="text-gray-300 mt-2 min-h-[80px]">
@@ -74,16 +76,18 @@ export function DisplayProjects({ projects }: DisplayProjectsProps) {
                                     src={project.image}
                                     alt={project.title}
                                     fill
-                                    className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
+                                    className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
                                 />
+                                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity duration-300" />
                             </div>
                         </CardContent>
 
                         {/* Card Footer (Buttons) */}
-                        <CardFooter className="flex flex-wrap gap-2 mt-auto">
+                        <CardFooter className="flex flex-wrap gap-2 mt-auto p-4">
                             <Button
                                 asChild
-                                className="bg-emerald-500 hover:bg-emerald-600 text-white flex-1 min-w-0"
+                                className="bg-emerald-600 hover:bg-emerald-700 text-white flex-1 min-w-0 
+                                           transition-colors duration-200"
                             >
                                 <Link
                                     href={project.codeUrl}
@@ -99,7 +103,8 @@ export function DisplayProjects({ projects }: DisplayProjectsProps) {
                             {project.demoUrl && (
                                 <Button
                                     asChild
-                                    className="bg-emerald-500 hover:bg-emerald-600 text-white flex-1 min-w-0"
+                                    className="bg-emerald-600 hover:bg-emerald-700 text-white flex-1 min-w-0 
+                                               transition-colors duration-200"
                                 >
                                     <Link
                                         href={project.demoUrl}
@@ -121,12 +126,12 @@ export function DisplayProjects({ projects }: DisplayProjectsProps) {
             {/* Image Popup Modal */}
             {selectedIndex !== null && (
                 <div
-                    className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4"
+                    className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4"
                     onClick={() => setSelectedIndex(null)}
                 >
                     <div
                         className="relative flex items-center justify-center"
-                        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+                        onClick={(e) => e.stopPropagation()}
                     >
                         {/* Left Arrow */}
                         <button
