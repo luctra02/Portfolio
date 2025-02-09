@@ -54,10 +54,33 @@ export const allProjects = [
         codeUrl: "https://github.com/NTNU-SmallSat-Lab/outreach-website",
     },
     {
-        title: " PokeTeamBuilder",
-        description: "PokeTeamBuilder er en nettside der brukeren kan få opp informasjon om alle pokemons fra første generasjon og lage et lag av maks 6 pokemons. På hjemmesiden får brukeren informasjon som ID-nummer, navn, bilde og type til de ulike pokemonene. Brukeren kan også klikke på en pokemon for mer detaljert informasjon.",
+        title: "PokeTeamBuilder",
+        description: "PokeTeamBuilder er en nettside der brukeren kan få opp informasjon om alle pokemons fra første generasjon og lage et lag av maks 6 pokemons. Brukeren kan også klikke på en pokemon for mer detaljert informasjon.",
         image: "/images/poketeambuilder.png",
-        demoUrl: "",
         codeUrl: "https://github.com/luctra02/PokeTeamBuilder",
+    },
+    {
+        title: "MelodyMeter",
+        description: "MelodyMeter lar brukere utforske Spotify-sanger basert på kriterier som positivitet, lydhøyde, dansbarhet og energi.",
+        image: "/images/melodymeter.png",
+        codeUrl: "https://github.com/luctra02/MelodyMeter",
+    },
+    {
+        title: "Skur",
+        description: "Skur er en nettside som lar deg leie og leie ut verktøy og redskaper! Det lar deg også legge til ting i lister. Her kan du legge ut annonser selv, eller se på andre sine og leie basert på det du trenger.",
+        image: "/images/skur.png",
+        codeUrl: "https://github.com/luctra02/skur",
+    },
+    {
+        title: "CustomChar",
+        description: "CustomChar lar brukeren designe sin egen karakter, som kan eksporteres lokalt som en JSON-fil. Brukeren kan redigere karakteren lokalt eller lage nye karakterer.",
+        image: "/images/customchar.png",
+        codeUrl: "https://github.com/luctra02/CustomChar",
+    },
+    {
+        title: "PizzaClicker",
+        description: " PizzaClicker er et spill hvor brukeren tjener penger ved å klikke på pizzaer og kan bruke pengene til å kjøpe flere pizzaer og arbeidere for å tjene mer.",
+        image: "/images/pizzaclicker.png",
+        codeUrl: "https://github.com/luctra02/PizzaClicker",
     },
 ];
