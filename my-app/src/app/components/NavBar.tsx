@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
 
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -29,15 +30,17 @@ export function Navbar() {
 
     return (
         <nav className="fixed top-0 w-full bg-gray-800/90 backdrop-blur-md z-50 shadow-lg">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-6xl mx-auto px-4">
+                {" "}
+                {/* Changed from px-6 sm:px-8 lg:px-12 to px-4 */}
                 <div className="flex items-center justify-between h-16">
-                    {/* Logo */}
-                    <div className="flex-shrink-0">
-                        <Link
-                            href="/"
-                            className="text-2xl font-bold text-emerald-300 hover:text-emerald-400 transition"
-                        >
-                            Lucas
+                    {/* Home Button */}
+                    <div className="flex items-center">
+                        <Link href="/">
+                            <FaHome
+                                className="text-emerald-300 hover:text-emerald-400 transition-transform duration-200 hover:scale-110"
+                                size={40}
+                            />
                         </Link>
                     </div>
 
@@ -90,7 +93,6 @@ export function Navbar() {
                         </Button>
                     </div>
                 </div>
-
                 {/* Mobile Menu */}
                 {isOpen && (
                     <div className="md:hidden bg-gray-800/95 backdrop-blur-md">
