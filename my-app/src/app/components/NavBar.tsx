@@ -102,20 +102,34 @@ export function Navbar() {
                             >
                                 Om meg
                             </Button>
-                            <Button
-                                variant="ghost"
-                                onClick={() => scrollToSection("skills")}
-                                className="text-gray-300 hover:text-emerald-400 hover:bg-gray-700/50 transition"
-                            >
-                                Ferdigheter
-                            </Button>
-                            <Button
-                                variant="ghost"
-                                onClick={() => scrollToSection("projects")}
-                                className="text-gray-300 hover:text-emerald-400 hover:bg-gray-700/50 transition"
-                            >
-                                Prosjekter
-                            </Button>
+                            <div className="w-full">
+                                <Link
+                                    href="/skills"
+                                    className="block w-full"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    <Button
+                                        variant="ghost"
+                                        className="w-full text-gray-300 hover:text-emerald-400 hover:bg-gray-700/50 transition"
+                                    >
+                                        Ferdigheter
+                                    </Button>
+                                </Link>
+                            </div>
+                            <div className="w-full">
+                                <Link
+                                    href="/projects"
+                                    className="block w-full"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    <Button
+                                        variant="ghost"
+                                        className="w-full text-gray-300 hover:text-emerald-400 hover:bg-gray-700/50 transition"
+                                    >
+                                        Prosjekter
+                                    </Button>
+                                </Link>
+                            </div>
                             <Button
                                 variant="ghost"
                                 onClick={() => scrollToSection("contact")}
