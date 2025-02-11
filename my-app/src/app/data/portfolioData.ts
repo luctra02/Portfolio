@@ -84,3 +84,100 @@ export const allProjects = [
         codeUrl: "https://github.com/luctra02/PizzaClicker",
     },
 ];
+
+export const allSkills = [
+    {
+        title: 'Programmeringsspråk',
+        skills: [
+            { name: 'Java', icon: '/icons/java.svg', url: 'https://www.java.com/' },
+            { name: 'Kotlin', icon: '/icons/kotlin.svg', url: 'https://kotlinlang.org/' },
+            { name: 'JavaScript', icon: '/icons/javascript.svg', url: 'https://www.javascript.com/' },
+            { name: 'TypeScript', icon: '/icons/typescript.svg', url: 'https://www.typescriptlang.org/' },
+            { name: 'Python', icon: '/icons/python.svg', url: 'https://www.python.org/' },
+        ],
+    },
+    {
+        title: 'Frontend-utvikling',
+        skills: [
+            { name: 'React', icon: '/icons/react.svg', url: 'https://reactjs.org/' },
+            { name: 'Next.js', icon: '/icons/nextjs.svg', url: 'https://nextjs.org/' },
+            { name: 'Vite', icon: '/icons/vite.svg', url: 'https://vitejs.dev/' },
+            { name: 'HTML', icon: '/icons/html.svg', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML' },
+            { name: 'CSS', icon: '/icons/css.svg', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
+            { name: 'Tailwind', icon: '/icons/tailwind.svg', url: 'https://tailwindcss.com/' },
+            { name: 'Zustand', icon: '/icons/zustand.svg', url: 'https://zustand-demo.pmnd.rs/' },
+            { name: 'JavaFX', icon: '/globe.svg', url: 'https://openjfx.io/' },
+            { name: 'GSAP', icon: '/icons/gsap.jpg', url: 'https://gsap.com/' },
+        ],
+    },
+    {
+        title: 'Backend-utvikling',
+        skills: [
+            { name: 'Node.js', icon: '/icons/nodejs.svg', url: 'https://nodejs.org/' },
+            { name: 'Spring Boot', icon: '/icons/springboot.svg', url: 'https://spring.io/projects/spring-boot' },
+            { name: 'REST API', icon: '/icons/restapi.svg', url: 'https://www.redhat.com/en/topics/api/what-is-a-rest-api' },
+            { name: 'GraphQL', icon: '/icons/graphql.svg', url: 'https://graphql.org/' },
+            { name: 'Socket.io', icon: '/icons/socketio.svg', url: 'https://socket.io/' },
+            { name: 'Strapi', icon: '/icons/strapi.svg', url: 'https://strapi.io/' },
+        ],
+    },
+    {
+        title: 'Databaser',
+        skills: [
+            { name: 'PostgreSQL', icon: '/icons/postgresql.svg', url: 'https://www.postgresql.org/' },
+            { name: 'MySQL', icon: '/icons/mysql.svg', url: 'https://www.mysql.com/' },
+            { name: 'MongoDB', icon: '/icons/mongodb.svg', url: 'https://www.mongodb.com/' },
+            { name: 'Firebase', icon: '/icons/firebase.svg', url: 'https://firebase.google.com/' },
+            { name: 'Supabase', icon: '/icons/supabase.svg', url: 'https://supabase.com/' },
+        ],
+    },
+    {
+        title: 'DevOps & Sky',
+        skills: [
+            { name: 'Docker', icon: '/icons/docker.svg', url: 'https://www.docker.com/' },
+            { name: 'Azure', icon: '/icons/azure.svg', url: 'https://azure.microsoft.com/' },
+            { name: 'Vercel', icon: '/icons/vercel.svg', url: 'https://vercel.com/' },
+            { name: 'Railway', icon: '/icons/railway.png', url: 'https://railway.app/' },
+            { name: 'CI/CD', icon: 'globe.svg', url: 'https://www.redhat.com/en/topics/devops/what-is-ci-cd' },
+            { name: 'GitHub Actions', icon: 'icons/github.svg', url: 'https://github.com/features/actions' },
+        ],
+    },
+    {
+        title: 'Testing',
+        skills: [
+            { name: 'Jest', icon: '/icons/jest.svg', url: 'https://jestjs.io/' },
+            { name: 'Cypress', icon: '/icons/cypress.svg', url: 'https://www.cypress.io/' },
+            { name: 'Playwright', icon: '/icons/playwright.svg', url: 'https://playwright.dev/' },
+            { name: 'JUnit', icon: '/icons/junit.svg', url: 'https://junit.org/junit5/' },
+        ],
+    },
+    {
+        title: 'UI/UX Design',
+        skills: [
+            { name: 'Figma', icon: '/icons/figma.svg', url: 'https://www.figma.com/' },
+            { name: 'Scene Builder', icon: 'globe.svg', url: 'https://www.oracle.com/java/technologies/javase/javafxscenebuilder-info.html' },
+        ],
+    },
+    {
+        title: 'Versjonskontroll & Samarbeid',
+        skills: [
+            { name: 'Git', icon: '/icons/git.svg', url: 'https://git-scm.com/' },
+            { name: 'Slack', icon: '/icons/slack.svg', url: 'https://slack.com/' },
+            { name: 'Notion', icon: '/icons/notion.svg', url: 'https://www.notion.so/' },
+        ],
+    },
+    {
+        title: 'Agile arbeidsmetodikk',
+        skills: [
+            { name: 'Scrum', icon: '/icons/scrum.svg', url: 'https://www.scrum.org/' },
+            { name: 'Kanban', icon: '/icons/kanban.svg', url: 'https://www.smidigbloggen.no/hva-er-kanban' },
+        ],
+    },
+    {
+        title: 'Autentisering & Sikkerhet',
+        skills: [
+            { name: 'OAuth', icon: '/icons/oauth.svg', url: 'https://oauth.net/' },
+            { name: 'NextAuth', icon: '/icons/nextauth.svg', url: 'https://next-auth.js.org/' },
+        ],
+    },
+];
