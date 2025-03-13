@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 
 // Define the form schema using zod
 const formSchema = z.object({
@@ -54,6 +55,8 @@ export function ContactForm() {
 
             if (response.ok) {
                 console.log("Message sent!");
+                toast("Melding er sendt!");
+                form.reset();
             } else {
                 console.error("Failed to send message.");
             }
