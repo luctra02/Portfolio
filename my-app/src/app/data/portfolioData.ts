@@ -9,6 +9,13 @@ export const programmingLanguages = [
 
 export const recentProjects = [
     {
+        title: "QuizMaster",
+        description: "QuizMaster er en interaktiv quiz-applikasjon som lar brukere teste kunnskapen sin, spore fremgang og få personlig tilbakemelding. Applikasjonen tilbyr tusenvis av spørsmål av ulike kategorier, med statistikk og AI-drevet tilbakemelding.",
+        image: "/images/quizmaster.png",
+        demoUrl: "https://quiz-app-alpha-two-62.vercel.app/",
+        codeUrl: "https://github.com/luctra02/QuizApp",
+    },
+    {
         title: "TicTacToe Multiplayer",
         description: "TicTacToe Multiplayer er en nettside som lar to spillere spille Tic-Tac-Toe mot hverandre fra forskjellige enheter. ",
         image: "/images/tictactoe.png",
@@ -32,6 +39,13 @@ export const recentProjects = [
 ];
 
 export const allProjects = [
+    {
+        title: "QuizMaster",
+        description: "QuizMaster er en interaktiv quiz-applikasjon som lar brukere teste kunnskapen sin, spore fremgang og få personlig tilbakemelding. Applikasjonen tilbyr tusenvis av spørsmål av ulike kategorier, med statistikk og AI-drevet tilbakemelding.",
+        image: "/images/quizmaster.png",
+        demoUrl: "https://quiz-app-alpha-two-62.vercel.app/",
+        codeUrl: "https://github.com/luctra02/QuizApp",
+    },
     {
         title: "TicTacToe Multiplayer",
         description: "TicTacToe Multiplayer er en nettside som lar to spillere spille Tic-Tac-Toe mot hverandre fra forskjellige enheter. ",
